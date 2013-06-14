@@ -50,18 +50,19 @@ public class RobotLogic {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			listOfPositions.clear();
-			listOfPositions.addAll(track.getData());
+//			listOfPositions.clear();
+//			listOfPositions.addAll(track.getData());
 			
 			// get data from video feed (hsv_image_class)
 			// center positions of all red blocks
-			redBlocks = listOfPositions.get(0);
+			redBlocks = track.dataList.get(0);
 			// center positions for all green blocks
-			greenBlocks = listOfPositions.get(1);
+			greenBlocks = track.dataList.get(1);
 			// center position for the robot1's front and back square
-			robot1Front = listOfPositions.get(2).get(0);
+			robot1Front = track.dataList.get(2).get(0);
 			System.out.println("Robot front: " + robot1Front.toString());
-			robot1Back = listOfPositions.get(3).get(0);
+			System.out.println("Back: " + track.dataList.get(3).get(0));
+			robot1Back = track.dataList.get(3).get(0);
 			// center position for the robot2's back square
 //			robot2Front = listOfPositions.get(4).get(0);
 //			robot2Back = listOfPositions.get(5).get(0);

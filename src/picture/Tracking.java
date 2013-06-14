@@ -33,7 +33,7 @@ public class Tracking {
 	OpenCVFrameGrabber grapper;
 	IplImage image,hsv,thresh;
 	CvMemStorage storage = CvMemStorage.create();
-	ArrayList<ArrayList<Position>> dataList = new ArrayList<ArrayList<Position>>();
+	public ArrayList<ArrayList<Position>> dataList = new ArrayList<ArrayList<Position>>();
 	
 	public Tracking() {
 		gui = new GUI();
@@ -203,6 +203,9 @@ public class Tracking {
 		//	System.out.println("List Content:"+tmp_position);
 			
 			dataList.add(new ArrayList<Position>(tmp_position));
+			for(int l = 0; l < dataList.size(); l++){
+				System.out.println("Elements of datalist: " + dataList.get(l).toString());
+			}
 		//	System.out.println("Final list:"+dataList.toString());
 			tmp_position.clear();
 			gui.setGreen_OK(false);
