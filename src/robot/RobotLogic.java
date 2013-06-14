@@ -93,9 +93,9 @@ public class RobotLogic {
 			
 			// send movement signals to Robot1's wheels using bluetooth
 			if (robot1Movement.equals("RIGHT")) {
-				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference-20), Integer.toString(robotSpeed));
+				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference-25));
 			} else { // robotMovement.equals("LEFT")
-				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference-20));
+				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference-25), Integer.toString(robotSpeed));
 			}
 			
 			// send movement signals to Robot2's wheels using bluetooth
