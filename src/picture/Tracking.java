@@ -156,7 +156,7 @@ public class Tracking {
 		image = grapper.grab();
 		dataList.clear();
 		for(Settings setting : gui.getColorSettings()) {
-		//	System.out.println(setting.toString());
+			System.out.println(setting.toString());
 			ArrayList<Position> tmp_position = new ArrayList<Position>();
 			CvSeq contours = new CvSeq();
 
@@ -212,7 +212,7 @@ public class Tracking {
 			gui.setRed_OK(false);
 			cvWaitKey(0);
 			// image = null;
-			cvClearMemStorage(storage);
+//			cvClearMemStorage(storage);
 //			System.out.println(blocklist.toString());
 		}
 		trackingThreadFinished = true;

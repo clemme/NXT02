@@ -25,9 +25,9 @@ public class RobotLogic {
 	static String robot2Movement;
 	static int robot1speedDifference;
 	static int robot2speedDifference;
-	static final int robotSpeed = 200;
+	static final int robotSpeed = 160;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		long startTime = System.currentTimeMillis();
 		
@@ -53,42 +53,49 @@ public class RobotLogic {
 //			listOfPositions.clear();
 //			listOfPositions.addAll(track.getData());
 			
-			// get data from video feed (hsv_image_class)
-			// center positions of all red blocks
-			redBlocks = track.dataList.get(0);
-			// center positions for all green blocks
-			greenBlocks = track.dataList.get(1);
-			// center position for the robot1's front and back square
-			robot1Front = track.dataList.get(2).get(0);
-			System.out.println("Robot front: " + robot1Front.toString());
-			System.out.println("Back: " + track.dataList.get(3).get(0));
-			robot1Back = track.dataList.get(3).get(0);
-			// center position for the robot2's back square
+			try {
+				// get data from video feed (hsv_image_class)
+				// center positions of all red blocks
+				redBlocks = track.dataList.get(0);
+				// center positions for all green blocks
+				greenBlocks = track.dataList.get(1);
+				// center position for the robot1's front and back square
+				robot1Front = track.dataList.get(2).get(0);
+				System.out.println("Robot front: " + robot1Front.toString());
+				System.out.println("Back: " + track.dataList.get(3).get(0));
+				robot1Back = track.dataList.get(3).get(0);
+				// center position for the robot2's back square
 //			robot2Front = listOfPositions.get(4).get(0);
 //			robot2Back = listOfPositions.get(5).get(0);
-			
-			// initialize robot1 and robot2
-			robot1.robotInit(robot1Front, robot1Back);
+				
+				// initialize robot1 and robot2
+				robot1.robotInit(robot1Front, robot1Back);
+				System.out.println("Robot 1 Coords: "+robot1.toString());
 //			robot2.robotInit(robot2Front, robot2Front);
-			
-			// map ports
-			ports = mapPorts(redBlocks, greenBlocks);
-			
-			// map routes
-			route1 = mapRoute(ports, robot1);
+				
+				// map ports
+				ports = mapPorts(redBlocks, greenBlocks);
+				
+				// map routes
+				route1 = mapRoute(ports, robot1);
 //			route2 = mapRoute(ports, robot2);
-			// calculate robot movement - left/right
-			robot1Movement = calculateRobotMovement(robot1, route1);
+				// calculate robot movement - left/right
+				robot1Movement = calculateRobotMovement(robot1, route1);
 //			robot2Movement = calculateRobotMovement(robot1, route1);
-			// calculate speed difference on wheel
-			robot1speedDifference = calculateRobotSpeed(robot1, route1);
+				// calculate speed difference on wheel
+				robot1speedDifference = calculateRobotSpeed(robot1, route1);
 //			robot2speedDifference = calculateRobotSpeed(robot2, route2);
+			} catch (java.lang.IndexOutOfBoundsException e) {
+				btcRobot1.runRobot("000", "000");
+				Thread.sleep(200);
+				continue;
+			}
 			
 			// send movement signals to Robot1's wheels using bluetooth
 			if (robot1Movement.equals("RIGHT")) {
-				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference));
+				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference-20), Integer.toString(robotSpeed));
 			} else { // robotMovement.equals("LEFT")
-				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference), Integer.toString(robotSpeed));
+				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference-20));
 			}
 			
 			// send movement signals to Robot2's wheels using bluetooth
@@ -103,6 +110,7 @@ public class RobotLogic {
 			long middle = System.currentTimeMillis();
 			long middleTime = middle - startTime;
 			System.out.println("Calculation time: " + middleTime);
+			
 		}
 	}
 	
