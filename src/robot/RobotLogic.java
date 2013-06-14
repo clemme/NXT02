@@ -25,7 +25,7 @@ public class RobotLogic {
 	static String robot2Movement;
 	static int robot1speedDifference;
 	static int robot2speedDifference;
-	static final int robotSpeed = 160;
+	static final int robotSpeed = 230;
 
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -87,15 +87,15 @@ public class RobotLogic {
 //			robot2speedDifference = calculateRobotSpeed(robot2, route2);
 			} catch (java.lang.IndexOutOfBoundsException e) {
 				btcRobot1.runRobot("000", "000");
-				Thread.sleep(200);
+				Thread.sleep(1000);
 				continue;
 			}
 			
 			// send movement signals to Robot1's wheels using bluetooth
 			if (robot1Movement.equals("RIGHT")) {
-				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference-25));
+				btcRobot1.runRobot(Integer.toString(robotSpeed),Integer.toString(robotSpeed-robot1speedDifference-40));
 			} else { // robotMovement.equals("LEFT")
-				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference-25), Integer.toString(robotSpeed));
+				btcRobot1.runRobot(Integer.toString(robotSpeed-robot1speedDifference-40), Integer.toString(robotSpeed));
 			}
 			
 			// send movement signals to Robot2's wheels using bluetooth
