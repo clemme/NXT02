@@ -30,6 +30,14 @@ public class BluetoothConnectionFactory {
 	public void runRobot(String speedMotorA, String speedMotorB) {
 		byte[] control = new byte[12];
 		
+		if (speedMotorA.length() == 1) {
+			speedMotorA = "00" + speedMotorA;
+		}
+		
+		if (speedMotorB.length() == 1) {
+			speedMotorB = "00" + speedMotorB;
+		}
+		
 		if (speedMotorA.length() == 2) {
 			speedMotorA = "0" + speedMotorA;
 		}
@@ -37,6 +45,15 @@ public class BluetoothConnectionFactory {
 		if (speedMotorB.length() == 2) {
 			speedMotorB = "0" + speedMotorB;
 		}
+		
+		if (Integer.parseInt(speedMotorA) < 0) {
+			speedMotorA = "000";
+		}
+		
+		if (Integer.parseInt(speedMotorB) < 0) {
+			speedMotorB = "000";
+		}
+		
 		control = (speedMotorA + speedMotorB).getBytes();
 		
 		System.out.println(new String(control));

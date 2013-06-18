@@ -28,10 +28,10 @@ public class GUI implements Runnable {
 	private Boolean ready = false;
 	private JLabel labelS_min;
 	private JSlider sliderS_min;
-	private JLabel lblMin;
+//	private JLabel lblMin;
 	private JSlider sliderV_min;
 	private JLabel labelV_min;
-	private JLabel lblMax;
+//	private JLabel lblMax;
 	private JLabel labelH_max;
 	private JSlider sliderH_max;
 	private JSlider sliderS_max;
@@ -50,13 +50,15 @@ public class GUI implements Runnable {
 	private JSlider sliderSMAX;
 	private JButton btnInnerBlock;
 	private JButton btnOuterBlock;
-	private boolean GREEN_OK = false;
-	private boolean RED_OK = false;
-	private boolean GREEN_PRESSED_BFR = false;
-	private boolean RED_PRESSED_BFR = false;
+//	private boolean GREEN_OK = false;
+//	private boolean RED_OK = false;
+//	private boolean GREEN_PRESSED_BFR = false;
+//	private boolean RED_PRESSED_BFR = false;
 	private ArrayList<Settings> settingList = new ArrayList<Settings>();
 	private boolean isSame = false;
 	private int counter = 0;
+	private JButton btnFront2, btnBack2;
+	
 	public GUI(){
 		
 	}
@@ -156,29 +158,29 @@ public class GUI implements Runnable {
 		SMAX = sMAX;
 	}
 	
-	public boolean getGreen_OK() {
-		return GREEN_OK;
-	}
-
-	public void setGreen_OK(boolean b) {
-		this.GREEN_PRESSED_BFR = true;
-		this.GREEN_OK = b;	
-	}
-	public boolean getGREEN_BFR(){
-		return GREEN_PRESSED_BFR;
-	}
-	
-	public boolean getRed_OK() {
-		return RED_OK;
-	}
-
-	public void setRed_OK(boolean b) {
-		this.RED_PRESSED_BFR = true;
-		this.RED_OK = b;	
-	}
-	public boolean getRED_BFR(){
-		return RED_PRESSED_BFR;
-	}
+//	public boolean getGreen_OK() {
+//		return GREEN_OK;
+//	}
+//
+//	public void setGreen_OK(boolean b) {
+//		this.GREEN_PRESSED_BFR = true;
+//		this.GREEN_OK = b;	
+//	}
+//	public boolean getGREEN_BFR(){
+//		return GREEN_PRESSED_BFR;
+//	}
+//	
+//	public boolean getRed_OK() {
+//		return RED_OK;
+//	}
+//
+//	public void setRed_OK(boolean b) {
+//		this.RED_PRESSED_BFR = true;
+//		this.RED_OK = b;	
+//	}
+//	public boolean getRED_BFR(){
+//		return RED_PRESSED_BFR;
+//	}
 	
 	public void setSettings(String color, String name) {
 		for(Settings setting : settingList){
@@ -210,8 +212,8 @@ public class GUI implements Runnable {
 	private int r_min = 0, g_min = 0, b_min = 0;
 	private int r_max = 255, g_max = 255, b_max = 255;
 	private int smooth = 1, erode, dilate, SMIN = 100, SMAX = 0;
-	private JButton btnFront;
-	private JButton btnBack;
+	private JButton btnFront1;
+	private JButton btnBack1;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -245,7 +247,7 @@ public class GUI implements Runnable {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		sliderH_Min = new JSlider(0, 255);
+		sliderH_Min = new JSlider(0, 360);
 		sliderH_Min.setBounds(129, 32, 287, 23);
 		sliderH_Min.setValue(r_min);
 		panel.add(sliderH_Min);
@@ -263,7 +265,7 @@ public class GUI implements Runnable {
 		labelH_min.setBounds(30, 32, 89, 14);
 		panel.add(labelH_min);
 
-		sliderS_min = new JSlider(0, 255);
+		sliderS_min = new JSlider(0, 100);
 		sliderS_min.setBounds(129, 66, 287, 23);
 		sliderS_min.setValue(g_min);
 		panel.add(sliderS_min);
@@ -284,7 +286,7 @@ public class GUI implements Runnable {
 		//lblMin.setBounds(30, 11, 46, 14);
 		//panel.add(lblMin);
 
-		sliderV_min = new JSlider(0, 255);
+		sliderV_min = new JSlider(0, 100);
 		sliderV_min.setBounds(129, 100, 287, 23);
 		sliderV_min.setValue(g_min);
 		panel.add(sliderV_min);
@@ -305,7 +307,7 @@ public class GUI implements Runnable {
 		//lblMax.setBounds(30, 137, 46, 14);
 		//panel.add(lblMax);
 
-		sliderH_max = new JSlider(0, 255);
+		sliderH_max = new JSlider(0, 360);
 		sliderH_max.setBounds(129, 162, 287, 23);
 		sliderH_max.setValue(g_max);
 		panel.add(sliderH_max);
@@ -322,7 +324,7 @@ public class GUI implements Runnable {
 		labelH_max.setBounds(30, 162, 89, 14);
 		panel.add(labelH_max);
 
-		sliderS_max = new JSlider(0, 255);
+		sliderS_max = new JSlider(0, 100);
 		sliderS_max.setValue(g_max);
 		sliderS_max.setBounds(129, 196, 287, 23);
 		panel.add(sliderS_max);
@@ -339,7 +341,7 @@ public class GUI implements Runnable {
 		labelS_max.setBounds(30, 196, 89, 14);
 		panel.add(labelS_max);
 
-		sliderV_max = new JSlider(0, 255);
+		sliderV_max = new JSlider(0, 100);
 		sliderV_max.setValue(b_max);
 		sliderV_max.setBounds(129, 230, 287, 23);
 		panel.add(sliderV_max);
@@ -449,7 +451,7 @@ public class GUI implements Runnable {
 				setSettings("GREEN", "GREEN_SETTINGS");
 				btnInnerBlock.setBackground(Color.GREEN);
 				btnOuterBlock.setEnabled(true);
-				setSliders(75, 225, 0, 205, 255, 5);
+//				setSliders(75, 225, 0, 205, 255, 5);
 				
 			}
 		});
@@ -462,36 +464,44 @@ public class GUI implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				setSettings("RED", "RED_SETTINGS");
 				btnOuterBlock.setBackground(Color.GREEN);
-				btnFront.setEnabled(true);
-				setSliders(75, 175, 143, 161, 255, 175);
+				btnFront1.setEnabled(true);
+				//Robot MAXPOWER
+//				setSliders(75, 175, 143, 161, 255, 175);
+				//Robot NXT
+//				setSliders(0, 44, 100, 255, 255, 146);
 			}
 		});
 		btnOuterBlock.setBounds(129, 505, 89, 23);
 		panel.add(btnOuterBlock);
 		
-		btnFront = new JButton("Front");
-		btnFront.setEnabled(false);
-		btnFront.addActionListener(new ActionListener() {
+		btnFront1 = new JButton("Front");
+		btnFront1.setEnabled(false);
+		btnFront1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setSettings("FRONT", "FRONT_SETTINGS");
-				btnFront.setBackground(Color.GREEN);
-				btnBack.setEnabled(true);
-				setSliders(200, 0, 0, 230, 55, 130);
+				setSettings("FRONT1", "FRONT1_SETTINGS");
+				btnFront1.setBackground(Color.GREEN);
+				btnBack1.setEnabled(true);
+				
+				//Robot NXT
+//				setSliders(28, 43, 68, 178, 255, 99);
 			}
 		});
-		btnFront.setBounds(228, 505, 89, 23);
-		panel.add(btnFront);
+		btnFront1.setBounds(228, 505, 89, 23);
+		panel.add(btnFront1);
 		
-		btnBack = new JButton("Back");
-		btnBack.setEnabled(false);
-		btnBack.addActionListener(new ActionListener() {
+		btnBack1 = new JButton("Back");
+		btnBack1.setEnabled(false);
+		btnBack1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setSettings("BACK", "BACK_SETTINGS");
-				btnBack.setBackground(Color.GREEN);
+				setSettings("BACK1", "BACK1_SETTINGS");
+				btnBack1.setBackground(Color.GREEN);
+				btnFront2.setEnabled(true);
+//				setSliders(87, 75, 146, 170, 224, 173);
+				
 			}
 		});
-		btnBack.setBounds(327, 505, 89, 23);
-		panel.add(btnBack);
+		btnBack1.setBounds(327, 505, 89, 23);
+		panel.add(btnBack1);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(32, 492, 186, 2);
@@ -506,10 +516,10 @@ public class GUI implements Runnable {
 		separator_1.setBounds(228, 492, 186, 2);
 		panel.add(separator_1);
 		
-		JLabel lblRobot = new JLabel("Robot");
-		lblRobot.setForeground(Color.DARK_GRAY);
-		lblRobot.setBounds(307, 478, 29, 14);
-		panel.add(lblRobot);
+		JLabel lblRobot1 = new JLabel("Robot #1");
+		lblRobot1.setForeground(Color.DARK_GRAY);
+		lblRobot1.setBounds(299, 478, 46, 14);
+		panel.add(lblRobot1);
 		
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
@@ -520,6 +530,41 @@ public class GUI implements Runnable {
 		btnStart.setBackground(UIManager.getColor("Button.background"));
 		btnStart.setBounds(30, 546, 188, 44);
 		panel.add(btnStart);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(228, 553, 186, 2);
+		panel.add(separator_2);
+		
+		JLabel lblRobot2 = new JLabel("Robot #2");
+		lblRobot2.setForeground(Color.DARK_GRAY);
+		lblRobot2.setBounds(299, 539, 46, 14);
+		panel.add(lblRobot2);
+		
+		btnFront2 = new JButton("Front");
+		btnFront2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setSettings("FRONT2", "FRONT2_SETTINGS");
+				btnFront2.setBackground(Color.GREEN);
+				btnBack2.setEnabled(true);
+				//Robot MAXPOWER
+//				setSliders(200, 0, 0, 230, 55, 130);
+
+			}
+		});
+		btnFront2.setEnabled(false);
+		btnFront2.setBounds(228, 567, 89, 23);
+		panel.add(btnFront2);
+		
+		btnBack2 = new JButton("Back");
+		btnBack2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSettings("BACK2", "BACK2_SETTINGS");
+				btnBack2.setBackground(Color.GREEN);
+			}
+		});
+		btnBack2.setEnabled(false);
+		btnBack2.setBounds(327, 566, 89, 23);
+		panel.add(btnBack2);
 	}
 
 
@@ -527,20 +572,20 @@ public class GUI implements Runnable {
 	public void run() {
 		initialize();
 		frame.setVisible(true);
-		setSliders(25, 100, 50, 255, 255, 66);
+		//setSliders(25, 100, 50, 255, 255, 66);
 	}
-	public void setSliders(int r_min, int g_min, int b_min, int r_max,int g_max,int b_max){
-		this.sliderH_Min.setValue(r_min);
-		this.r_min = r_min;
-		this.sliderS_min.setValue(g_min);
-		this.g_min = g_min;
-		this.sliderV_min.setValue(b_min);
-		this.b_min = b_min;
-		this.sliderH_max.setValue(r_max);
-		this.r_max = r_max;
-		this.sliderS_max.setValue(g_max);
-		this.g_max = g_max;
-		this.sliderV_max.setValue(b_max);
-		this.b_max = b_max;
-	}
+//	public void setSliders(int r_min, int g_min, int b_min, int r_max,int g_max,int b_max){
+//		this.sliderH_Min.setValue(r_min);
+//		this.r_min = r_min;
+//		this.sliderS_min.setValue(g_min);
+//		this.g_min = g_min;
+//		this.sliderV_min.setValue(b_min);
+//		this.b_min = b_min;
+//		this.sliderH_max.setValue(r_max);
+//		this.r_max = r_max;
+//		this.sliderS_max.setValue(g_max);
+//		this.g_max = g_max;
+//		this.sliderV_max.setValue(b_max);
+//		this.b_max = b_max;
+//	}
 }

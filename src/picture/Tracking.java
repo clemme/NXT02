@@ -20,9 +20,6 @@ import static com.googlecode.javacv.cpp.opencv_highgui.*;
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 import com.googlecode.javacv.OpenCVFrameGrabber;
-import com.googlecode.javacv.cpp.avcodec.AVHWAccel.Start_frame;
-import com.googlecode.javacv.cpp.opencv_legacy.CvBlobDetector;
-import com.googlecode.javacv.cpp.opencv_core.*;
 
 public class Tracking {
 
@@ -33,6 +30,7 @@ public class Tracking {
 	OpenCVFrameGrabber grapper;
 	IplImage image,hsv,thresh;
 	CvMemStorage storage = CvMemStorage.create();
+	CanvasFrame cfFilter;
 	public ArrayList<ArrayList<Position>> dataList = new ArrayList<ArrayList<Position>>();
 	
 	public Tracking() {
@@ -67,7 +65,7 @@ public class Tracking {
 		thresh = cvCreateImage(cvGetSize(image), 8, 1);
 
 		/* Frame for filter */
-		CanvasFrame cfFilter = new CanvasFrame("Filtered feed");
+		cfFilter = new CanvasFrame("Filtered feed");
 		cfFilter.setCanvasSize(image.width(), image.height());
 		cfFilter.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -137,8 +135,8 @@ public class Tracking {
 			}
 //			blocklist.addAll(blocks_temp);
 //			blocks_temp.clear();
-			gui.setGreen_OK(false);
-			gui.setRed_OK(false);
+//			gui.setGreen_OK(false);
+//			gui.setRed_OK(false);
 
 			cfFilter.showImage(thresh);
 			cfSource.showImage(image);
@@ -175,7 +173,8 @@ public class Tracking {
 
 			/* Isolating a color range from the source image */
 			thresh = getThresholdedImage(image, hsv, thresh, setting.getR_min(), setting.getG_min(), setting.getB_min(), setting.getR_max(), setting.getG_max(), setting.getB_max());
-
+			cfFilter.showImage(thresh);
+			
 			/* Finding contours in the image */
 			cvFindContours(thresh, storage, contours,
 					Loader.sizeof(CvContour.class), CV_RETR_LIST,
@@ -208,8 +207,8 @@ public class Tracking {
 			}
 		//	System.out.println("Final list:"+dataList.toString());
 			tmp_position.clear();
-			gui.setGreen_OK(false);
-			gui.setRed_OK(false);
+//			gui.setGreen_OK(false);
+//			gui.setRed_OK(false);
 			cvWaitKey(0);
 			// image = null;
 //			cvClearMemStorage(storage);
@@ -223,8 +222,8 @@ public class Tracking {
 			IplImage imgThreshed, int r_min, int g_min, int b_min, int r_max, int g_max, int b_max) {
 		cvCvtColor(img, imgHSV, CV_BGR2HSV);
 		cvInRangeS(imgHSV,
-				cvScalar(b_min, g_min, r_min, 0),
-				cvScalar(b_max, g_max, r_max, 0),
+				cvScalar(r_min/2, g_min*2.55, b_min*2.55, 0),
+				cvScalar(r_max/2, g_max*2.55, b_max*2.55, 0),
 				imgThreshed);
 		return imgThreshed;
 	}
