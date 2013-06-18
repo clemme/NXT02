@@ -154,7 +154,7 @@ public class Tracking {
 		image = grapper.grab();
 		dataList.clear();
 		for(Settings setting : gui.getColorSettings()) {
-			System.out.println(setting.toString());
+//			System.out.println(setting.toString());
 			ArrayList<Position> tmp_position = new ArrayList<Position>();
 			CvSeq contours = new CvSeq();
 
@@ -202,9 +202,9 @@ public class Tracking {
 		//	System.out.println("List Content:"+tmp_position);
 			
 			dataList.add(new ArrayList<Position>(tmp_position));
-			for(int l = 0; l < dataList.size(); l++){
-				System.out.println("Elements of datalist: " + dataList.get(l).toString());
-			}
+//			for(int l = 0; l < dataList.size(); l++){
+//				System.out.println("Elements of datalist: " + dataList.get(l).toString());
+//			}
 		//	System.out.println("Final list:"+dataList.toString());
 			tmp_position.clear();
 //			gui.setGreen_OK(false);

@@ -469,7 +469,7 @@ public class GUI implements Runnable {
 				//Robot MAXPOWER
 //				setSliders(75, 175, 143, 161, 255, 175);
 				//Robot NXT
-				setSliders(317, 0, 0, 347, 100, 100);
+				setSliders(200, 0, 0, 270, 100, 100);
 			}
 		});
 		btnOuterBlock.setBounds(129, 505, 89, 23);
@@ -484,7 +484,7 @@ public class GUI implements Runnable {
 				btnBack1.setEnabled(true);
 				
 				//Robot NXT
-				setSliders(0,0,70,360,28,100);
+				setSliders(153,0,18,225,100,100);
 			}
 		});
 		btnFront1.setBounds(228, 505, 89, 23);
