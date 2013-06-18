@@ -452,6 +452,7 @@ public class GUI implements Runnable {
 				btnInnerBlock.setBackground(Color.GREEN);
 				btnOuterBlock.setEnabled(true);
 //				setSliders(75, 225, 0, 205, 255, 5);
+				setSliders(0, 55, 49, 31, 100, 100);
 				
 			}
 		});
@@ -468,7 +469,7 @@ public class GUI implements Runnable {
 				//Robot MAXPOWER
 //				setSliders(75, 175, 143, 161, 255, 175);
 				//Robot NXT
-//				setSliders(0, 44, 100, 255, 255, 146);
+				setSliders(317, 0, 0, 347, 100, 100);
 			}
 		});
 		btnOuterBlock.setBounds(129, 505, 89, 23);
@@ -483,7 +484,7 @@ public class GUI implements Runnable {
 				btnBack1.setEnabled(true);
 				
 				//Robot NXT
-//				setSliders(28, 43, 68, 178, 255, 99);
+				setSliders(0,0,70,360,28,100);
 			}
 		});
 		btnFront1.setBounds(228, 505, 89, 23);
@@ -496,7 +497,7 @@ public class GUI implements Runnable {
 				setSettings("BACK1", "BACK1_SETTINGS");
 				btnBack1.setBackground(Color.GREEN);
 				btnFront2.setEnabled(true);
-//				setSliders(87, 75, 146, 170, 224, 173);
+				setSliders(317, 0, 0, 347, 100, 100);
 				
 			}
 		});
@@ -572,20 +573,20 @@ public class GUI implements Runnable {
 	public void run() {
 		initialize();
 		frame.setVisible(true);
-		//setSliders(25, 100, 50, 255, 255, 66);
+		setSliders(81, 36, 6, 140, 100, 100);
 	}
-//	public void setSliders(int r_min, int g_min, int b_min, int r_max,int g_max,int b_max){
-//		this.sliderH_Min.setValue(r_min);
-//		this.r_min = r_min;
-//		this.sliderS_min.setValue(g_min);
-//		this.g_min = g_min;
-//		this.sliderV_min.setValue(b_min);
-//		this.b_min = b_min;
-//		this.sliderH_max.setValue(r_max);
-//		this.r_max = r_max;
-//		this.sliderS_max.setValue(g_max);
-//		this.g_max = g_max;
-//		this.sliderV_max.setValue(b_max);
-//		this.b_max = b_max;
-//	}
+	public void setSliders(int r_min, int g_min, int b_min, int r_max,int g_max,int b_max){
+		this.sliderH_Min.setValue(r_min);
+		this.r_min = r_min;
+		this.sliderS_min.setValue(g_min);
+		this.g_min = g_min;
+		this.sliderV_min.setValue(b_min);
+		this.b_min = b_min;
+		this.sliderH_max.setValue(r_max);
+		this.r_max = r_max;
+		this.sliderS_max.setValue(g_max);
+		this.g_max = g_max;
+		this.sliderV_max.setValue(b_max);
+		this.b_max = b_max;
+	}
 }

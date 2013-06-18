@@ -40,8 +40,8 @@ public class RobotLogic {
 
 		
 		// establish bluetooth connections
-		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("MaxPower", "0016530A6E9D");
-//		BluetoothConnectionFactory btcRobot2 = new BluetoothConnectionFactory("NXT", "00165308F2B7");
+//		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("MaxPower", "0016530A6E9D");
+		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("NXT", "00165308F2B7");
 
 		while (true) {
 			// get objects from video feed
