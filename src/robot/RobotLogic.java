@@ -26,6 +26,7 @@ public class RobotLogic {
 	static int robot1speedDifference;
 	static int robot2speedDifference;
 	static final int robotSpeed = 230;
+	static final int speedAngleConstant = 2;
 
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -196,7 +197,7 @@ public class RobotLogic {
 		}
 		if (robot.getFront().calculateDistance(route.get(1)) < 10) {
 			route.remove(1);
-		}
+		} 
 		
 		return route;
 	}
@@ -244,6 +245,28 @@ public class RobotLogic {
 		double angle = Math.toDegrees(Math.acos((backToIn*backToIn+frontToBack*frontToBack-frontToIn*frontToIn)
 				/(2*backToIn*frontToBack)));
 		
-		return (int) Math.ceil(Math.abs(angle));	
+		return (int) Math.ceil(Math.abs(angle))*speedAngleConstant;	
+	}
+	
+	public void textDebugging(int robots) {
+		System.out.println("===========================================================");
+		System.out.println("Green blocks: " + listOfPositions.get(0).size());
+		System.out.println("Red blocks: " + listOfPositions.get(1).size());
+		System.out.println("Ports: " + ports.size());
+		System.out.println("-----------------------------------------------------------");
+		if (robots == 1) {
+			System.out.println("Robot1 position: [" + robot1.getFront().toString() + " ; " + robot1.getBack().toString() + "]");
+			System.out.println("Robot1 speedDifference: " + robot1speedDifference);
+			System.out.println("Robot1 angle: " + robot1speedDifference/speedAngleConstant);
+		}
+		if (robots == 2) {
+			System.out.println("Robot1: [" + robot1.getFront().toString() + " ; " + robot1.getBack().toString() + "]");
+			System.out.println("Robot1 speedDifference: " + robot1speedDifference);
+			System.out.println("Robot1 angle: " + robot1speedDifference/speedAngleConstant);
+			System.out.println("Robot2: [" + robot2.getFront().toString() + " ; " + robot2.getBack().toString() + "]");	
+			System.out.println("Robot2 speedDifference: " + robot2speedDifference);
+			System.out.println("Robot2 angle: " + robot2speedDifference/speedAngleConstant);
+		}
+		System.out.println();
 	}
 }
