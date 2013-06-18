@@ -255,13 +255,13 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelH_min.setText("R_MIN : " + sliderH_Min.getValue());
+				labelH_min.setText("H_MIN : " + sliderH_Min.getValue());
 				setR_min(sliderH_Min.getValue());
 
 			}
 		});
 
-		labelH_min = new JLabel("R_MIN : " + sliderH_Min.getValue());
+		labelH_min = new JLabel("H_MIN : " + sliderH_Min.getValue());
 		labelH_min.setBounds(30, 32, 89, 14);
 		panel.add(labelH_min);
 
@@ -273,12 +273,12 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelS_min.setText("G_MIN : " + sliderS_min.getValue());
+				labelS_min.setText("S_MIN : " + sliderS_min.getValue());
 				setG_min(sliderS_min.getValue());
 			}
 		});
 
-		labelS_min = new JLabel("G_MIN : " + sliderS_min.getValue());
+		labelS_min = new JLabel("S_MIN : " + sliderS_min.getValue());
 		labelS_min.setBounds(30, 66, 89, 14);
 		panel.add(labelS_min);
 
@@ -294,12 +294,12 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelV_min.setText("B_MIN : " + sliderV_min.getValue());
+				labelV_min.setText("V_MIN : " + sliderV_min.getValue());
 				setB_min(sliderV_min.getValue());
 			}
 		});
 
-		labelV_min = new JLabel("B_MIN : " + sliderV_min.getValue());
+		labelV_min = new JLabel("V_MIN : " + sliderV_min.getValue());
 		labelV_min.setBounds(30, 100, 89, 14);
 		panel.add(labelV_min);
 
@@ -315,12 +315,12 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelH_max.setText("R_MAX : " + sliderH_max.getValue());
+				labelH_max.setText("H_MAX : " + sliderH_max.getValue());
 				setR_max(sliderH_max.getValue());
 			}
 		});
 
-		labelH_max = new JLabel("R_MAX : " + sliderH_max.getValue());
+		labelH_max = new JLabel("H_MAX : " + sliderH_max.getValue());
 		labelH_max.setBounds(30, 162, 89, 14);
 		panel.add(labelH_max);
 
@@ -332,12 +332,12 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelS_max.setText("G_MAX : " + sliderS_max.getValue());
+				labelS_max.setText("S_MAX : " + sliderS_max.getValue());
 				setG_max(sliderS_max.getValue());
 			}
 		});
 
-		labelS_max = new JLabel("G_MAX : " + sliderS_max.getValue());
+		labelS_max = new JLabel("S_MAX : " + sliderS_max.getValue());
 		labelS_max.setBounds(30, 196, 89, 14);
 		panel.add(labelS_max);
 
@@ -349,12 +349,12 @@ public class GUI implements Runnable {
 
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
-				labelV_max.setText("B_MAX : " + sliderV_max.getValue());
+				labelV_max.setText("V_MAX : " + sliderV_max.getValue());
 				setB_max(sliderV_max.getValue());
 			}
 		});
 
-		labelV_max = new JLabel("B_MAX : " + sliderV_max.getValue());
+		labelV_max = new JLabel("V_MAX : " + sliderV_max.getValue());
 		labelV_max.setBounds(30, 230, 89, 14);
 		panel.add(labelV_max);
 		
