@@ -264,7 +264,7 @@ public class GUI implements Runnable {
 		labelH_min = new JLabel("H_MIN : " + sliderH_Min.getValue());
 		labelH_min.setBounds(30, 32, 89, 14);
 		panel.add(labelH_min);
-
+		//GIT
 		sliderS_min = new JSlider(0, 100);
 		sliderS_min.setBounds(129, 66, 287, 23);
 		sliderS_min.setValue(g_min);
