@@ -7,5 +7,5 @@ The purpose of the system is to control one or several robots around a track con
 This project consists of image analysis, to track the positions of ports and robots, mapping of datapoints from image analysis and robot control logic using information from the mapping.
 
 Libraries used:
-JavaCV - a Java wrapper of C++ OpenCV
-lejOS API - open source operating system for LEGO Mindstorm NXT 
+* JavaCV - a Java wrapper of C++ OpenCV
+* lejOS API - open source operating system for LEGO Mindstorm NXT 
