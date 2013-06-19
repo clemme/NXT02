@@ -1,6 +1,8 @@
 package picture;
 
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -31,7 +33,9 @@ public class Tracking {
 	IplImage image,hsv,thresh;
 	CvMemStorage storage = CvMemStorage.create();
 	CanvasFrame cfFilter;
+	CanvasFrame cfSource;
 	public ArrayList<ArrayList<Position>> dataList = new ArrayList<ArrayList<Position>>();
+	picture.ComponentListener cl;
 	
 	public Tracking() {
 		gui = new GUI();
@@ -67,20 +71,25 @@ public class Tracking {
 		/* Frame for filter */
 		cfFilter = new CanvasFrame("Filtered feed");
 		cfFilter.setCanvasSize(image.width(), image.height());
+		cfFilter.setResizable(false);
 		cfFilter.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 
 		/* Frame for source */
-		CanvasFrame cfSource = new CanvasFrame("Source feed");
+		cfSource = new CanvasFrame("Source feed");
 		cfSource.setCanvasSize(image.width(), image.height());
+		cfSource.setResizable(false);
 		cfSource.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+		
+		/* Add ComponentListener */
+		cfSource.addComponentListener(new picture.ComponentListener(cfSource, cfFilter));
+		cfFilter.addComponentListener(new picture.ComponentListener(cfSource, cfFilter));
+		
 		/* Image processing */
 		while (running) {
 			CvSeq contours = new CvSeq();
 
 			image = grapper.grab();
-			// image = cvLoadImage("spectrum.bmp");
-			// cvSmooth(image, image, CV_GAUSSIAN, 1);
 
 			/* FILTERS APPLIED */
 			cvThreshold(thresh, thresh, 64, 255, CV_THRESH_BINARY);
@@ -117,10 +126,9 @@ public class Tracking {
 						.getSize()))
 						&& ((rect.width() < gui.getSMAX()) || (rect.height() < gui
 								.getSMAX()))) {
-					// 2, 8
 					cvRectangle(image, p1, p2, CV_RGB(0, 0, 255), 1, CV_AA, 0);
 
-					// System.out.println("Midpoint : ("+rect.x()+rect.width()/2+","+rect.y()+rect.height()/2+")");
+//					 System.out.println("Midpoint : ("+rect.x()+rect.width()/2+","+rect.y()+rect.height()/2+")");
 					cvCircle(
 							image,
 							cvPoint(rect.x() + rect.width() / 2, rect.y()
@@ -129,21 +137,15 @@ public class Tracking {
 
 					cvDrawContours(thresh, contours, CvScalar.BLUE,
 							CV_RGB(248, 18, 18), 1, -1, 8);
-					//Add the found blocks to a list if satisfied with the found blocks
+					/* Add the found blocks to a list if satisfied with the found blocks */
 				}
 				contours = contours.h_next();
 			}
-//			blocklist.addAll(blocks_temp);
-//			blocks_temp.clear();
-//			gui.setGreen_OK(false);
-//			gui.setRed_OK(false);
 
 			cfFilter.showImage(thresh);
 			cfSource.showImage(image);
 			cvWaitKey(0);
-			// image = null;
 			cvClearMemStorage(storage);
-//			System.out.println(blocklist.toString());
 		}
 		//If all settings are final check all settings
 		
@@ -153,16 +155,10 @@ public class Tracking {
 	public void imageProcessing() throws Exception {
 		image = grapper.grab();
 		dataList.clear();
+		
 		for(Settings setting : gui.getColorSettings()) {
-//			System.out.println(setting.toString());
 			ArrayList<Position> tmp_position = new ArrayList<Position>();
 			CvSeq contours = new CvSeq();
-
-//			try {
-//				image = grapper.grab();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
 
 			/* FILTERS APPLIED */
 			cvThreshold(thresh, thresh, 64, 255, CV_THRESH_BINARY);
@@ -199,20 +195,15 @@ public class Tracking {
 				}
 				contours = contours.h_next();
 			}
-		//	System.out.println("List Content:"+tmp_position);
+//			System.out.println("List Content:"+tmp_position);
 			
 			dataList.add(new ArrayList<Position>(tmp_position));
 //			for(int l = 0; l < dataList.size(); l++){
 //				System.out.println("Elements of datalist: " + dataList.get(l).toString());
 //			}
-		//	System.out.println("Final list:"+dataList.toString());
+//			System.out.println("Final list:"+dataList.toString());
 			tmp_position.clear();
-//			gui.setGreen_OK(false);
-//			gui.setRed_OK(false);
 			cvWaitKey(0);
-			// image = null;
-//			cvClearMemStorage(storage);
-//			System.out.println(blocklist.toString());
 		}
 		trackingThreadFinished = true;
 		
@@ -228,39 +219,6 @@ public class Tracking {
 		return imgThreshed;
 	}
 
-//	@Override
-//	public void run() {
-//		try {
-//			capture();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-//	}
-
-	
-/*	public synchronized void putInto(Color color, ArrayList<Block> blocks_temp){
-		Iterator<Block> i = blocklist.iterator();
-		while(i.hasNext()) {
-			Block b = i.next();
-			if(b.getColor().equals(color)){
-				i.remove();
-			}
-		}
-		// blocklist.clear();
-		Position pos1 = new Position(rect.x(), rect.y());
-		Position pos2 = new Position(rect.x() + rect.width(),
-				rect.y());
-		Position pos3 = new Position(rect.x(), rect.y()
-				+ rect.height());
-		Position pos4 = new Position(rect.x() + rect.width(),
-				rect.y() + rect.height());
-
-		blocks_temp.add(new Block(pos1, pos2, pos3, pos4,
-				color));
-	}*/
-	
 	public ArrayList<ArrayList<Position>> getData(){
 		return dataList;
  	}
