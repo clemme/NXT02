@@ -186,6 +186,7 @@ public class GUI implements Runnable {
 	private int smooth = 1, erode, dilate, SMIN = 100, SMAX = 0;
 	private JButton btnFront1;
 	private JButton btnBack1;
+	//Try push
 
 	/**
 	 * @wbp.parser.entryPoint
