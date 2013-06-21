@@ -3,6 +3,7 @@ package picture;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -157,6 +158,7 @@ public class Tracking {
 		dataList.clear();
 		
 		for(Settings setting : gui.getColorSettings()) {
+			//System.out.println(setting.getName()+"\n");
 			ArrayList<Position> tmp_position = new ArrayList<Position>();
 			CvSeq contours = new CvSeq();
 
@@ -220,6 +222,7 @@ public class Tracking {
 	}
 
 	public ArrayList<ArrayList<Position>> getData(){
+		System.out.println("updated\n");
 		return dataList;
  	}
 

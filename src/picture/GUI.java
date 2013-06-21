@@ -18,6 +18,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class GUI implements Runnable {
@@ -211,6 +213,7 @@ public class GUI implements Runnable {
 		double screenW = screenSize.getWidth();
 		double screenH = screenSize.getHeight();
 		frame = new JFrame("Filter Tool");
+
 		frame.setBounds((int) (screenW-panelW-150), (int) (screenH-panelH-350), 459, 655);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
