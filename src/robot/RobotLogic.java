@@ -27,8 +27,8 @@ public class RobotLogic {
 	static int robot2speedDifference;
 	static String btcRobot1Data;
 	static String btcRobot2Data;
-	static final int robotSpeed = 450;
-	static final double speedAngleConstant = 3.5;
+	static final int robotSpeed = 300;
+	static final double speedAngleConstant = 3.0;
 
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -42,9 +42,9 @@ public class RobotLogic {
 
 		
 		// establish bluetooth connections
-//		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("NXT", "00165308F2B7");
+		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("NXT", "00165308F2B7");
 	//	System.out.println("NXT bluetooth...");
-		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("MaxPower", "0016530A6E9D");
+//		BluetoothConnectionFactory btcRobot1 = new BluetoothConnectionFactory("MaxPower", "0016530A6E9D");
 	//	System.out.println("MaxPower bluetooth");
 
 		while (true) {
@@ -227,7 +227,7 @@ public class RobotLogic {
 			route.remove(1);
 			route.remove(2);
 		}
-		if (robot.getFront().calculateDistance(route.get(1)) < 40) {
+		if (robot.getFront().calculateDistance(route.get(1)) < 25) {
 			route.remove(1);
 		} 
 		

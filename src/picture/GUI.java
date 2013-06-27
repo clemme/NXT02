@@ -435,7 +435,7 @@ public class GUI implements Runnable {
 				btnInnerBlock.setBackground(Color.GREEN);
 				btnOuterBlock.setEnabled(true);
 //				setSliders(75, 225, 0, 205, 255, 5);
-				setSliders(0, 55, 49, 31, 100, 100);
+				setSliders(0, 76, 33, 14, 100, 100);
 				
 			}
 		});
@@ -452,7 +452,7 @@ public class GUI implements Runnable {
 				//Robot MAXPOWER
 //				setSliders(75, 175, 143, 161, 255, 175);
 				//Robot NXT
-				setSliders(200, 0, 0, 270, 100, 100);
+				setSliders(199, 60, 90, 297, 100, 100);
 			}
 		});
 		btnOuterBlock.setBounds(129, 505, 89, 23);
@@ -467,7 +467,7 @@ public class GUI implements Runnable {
 				btnBack1.setEnabled(true);
 				
 				//Robot NXT
-				setSliders(153,0,18,225,100,100);
+				setSliders(0,0,90,360,25,100);
 			}
 		});
 		btnFront1.setBounds(228, 505, 89, 23);
@@ -562,7 +562,7 @@ public class GUI implements Runnable {
 	public void run() {
 		initialize();
 		frame.setVisible(true);
-		setSliders(81, 36, 6, 140, 100, 100);
+		setSliders(87, 59, 30, 166, 100, 100);
 	}
 	
 }
